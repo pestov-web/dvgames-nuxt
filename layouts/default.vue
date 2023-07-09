@@ -3,7 +3,7 @@
 <template>
   <div class="page">
     <AppHeader />
-    <main class="main mt-[100px]">
+    <main class="main mt-[70px]">
       <slot />
     </main>
     <AppFooter />
@@ -31,5 +31,9 @@ body {
 .page-leave-to {
   opacity: 0;
   filter: blur(0.5rem);
+}
+img,
+figure {
+  margin: auto;
 }
 </style>

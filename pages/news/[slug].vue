@@ -2,7 +2,6 @@
 const route = useRoute();
 const router = useRouter();
 
-console.log(route.params.slug);
 const { data: article } = await useFetch(
   `http://localhost:1337/api/articles?filters[slug][$eq]=${route.params.slug}&populate=*`,
 );

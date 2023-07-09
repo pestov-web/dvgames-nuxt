@@ -24,14 +24,10 @@
             </h2>
             <ul class="text-gray-500 dark:text-gray-400 font-medium">
               <li class="mb-4">
-                <a href="https://flowbite.com/" class="hover:underline"
-                  >DVGames</a
-                >
+                <a href="#" class="hover:underline">DVGames</a>
               </li>
               <li>
-                <a href="https://tailwindcss.com/" class="hover:underline"
-                  >Tailwind CSS</a
-                >
+                <a href="#" class="hover:underline">Сфера</a>
               </li>
             </ul>
           </div>
@@ -43,16 +39,10 @@
             </h2>
             <ul class="text-gray-500 dark:text-gray-400 font-medium">
               <li class="mb-4">
-                <a
-                  href="https://github.com/themesberg/flowbite"
-                  class="hover:underline"
-                  >Github</a
-                >
+                <a href="#" class="hover:underline">Telegram</a>
               </li>
               <li>
-                <a href="https://discord.gg/4eeurUVvTy" class="hover:underline"
-                  >Discord</a
-                >
+                <a href="#" class="hover:underline">Discord</a>
               </li>
             </ul>
           </div>
@@ -64,10 +54,10 @@
             </h2>
             <ul class="text-gray-500 dark:text-gray-400 font-medium">
               <li class="mb-4">
-                <a href="#" class="hover:underline">Privacy Policy</a>
+                <a href="#" class="hover:underline">Ссылка 2</a>
               </li>
               <li>
-                <a href="#" class="hover:underline">Terms &amp; Conditions</a>
+                <a href="#" class="hover:underline">Сылка 2</a>
               </li>
             </ul>
           </div>
@@ -79,7 +69,7 @@
       <div class="sm:flex sm:items-center sm:justify-between">
         <span class="text-sm text-gray-500 sm:text-center dark:text-gray-400"
           >© 2023
-          <a href="https://flowbite.com/" class="hover:underline">DVGames™</a>.
+          <a href="https://dvgames.ru/" class="hover:underline">DVGames™</a>.
           All Rights Reserved.
         </span>
         <div class="flex mt-4 space-x-5 sm:justify-center sm:mt-0">

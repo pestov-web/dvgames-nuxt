@@ -11,18 +11,18 @@ const props = defineProps({
     <h2 class="news__title">События</h2>
     <ul class="news__list">
       <li v-for="event in events" class="news__card">
-        <NuxtLink :to="`/events/${event.id}`" class="news__card-link">
-          <!--          <nuxt-img-->
-          <!--            provider="strapi"-->
-          <!--            :src="event.attributes.logo.data.attributes.url"-->
-          <!--            width="210"-->
-          <!--            height="169"-->
-          <!--          />-->
+        <NuxtLink
+          :to="`/events/${event.attributes.slug}`"
+          class="news__card-link"
+        >
           <h3 class="news__card-title">{{ event.attributes.title }}</h3>
-        </NuxtLink>
-        <div class="news__card-info">
-          <span class="news__card-date">{{ event.attributes.date }}</span>
-        </div>
+
+          <div class="news__card-info">
+            <span class="news__card-date">{{
+              event.attributes.description
+            }}</span>
+          </div></NuxtLink
+        >
       </li>
     </ul>
   </div>
