@@ -2,7 +2,7 @@
 
 <template>
   <div class="page">
-    <AppHeadaer />
+    <AppHeader />
     <main class="main mt-[100px]">
       <slot />
     </main>
@@ -21,7 +21,7 @@
 
 <style>
 body {
-  @apply bg-gray;
+  @apply bg-gray-900;
 }
 .page-enter-active,
 .page-leave-active {

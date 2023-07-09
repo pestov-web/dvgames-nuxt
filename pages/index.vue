@@ -6,7 +6,9 @@ const {
   refresh,
   error,
 } = await useAsyncData("articles", () =>
-  find("articles", { populate: ["image", "categories", "author"] }),
+  find("articles", {
+    populate: ["image", "categories", "author", "category", "subcat"],
+  }),
 );
 const { data: events } = await useAsyncData("events", () =>
   find("events", { populate: "logo" }),
@@ -14,8 +16,11 @@ const { data: events } = await useAsyncData("events", () =>
 </script>
 
 <template>
-  <div class="flex">
-    <NewsList :news="news.data" />
-    <EventsList :events="events.data" />
+  <div class="">
+    <HeroSection />
+    <section class="news grid grid-cols-3 gap-4">
+      <NewsList :news="news.data" />
+      <EventsList :events="events.data" />
+    </section>
   </div>
 </template>

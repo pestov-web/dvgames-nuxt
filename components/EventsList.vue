@@ -7,11 +7,11 @@ const props = defineProps({
 </script>
 
 <template>
-  <div class="pb-[100px]">
+  <div class="pb-[100px] bg-white rounded-2xl">
     <h2 class="news__title">События</h2>
     <ul class="news__list">
       <li v-for="event in events" class="news__card">
-        <NuxtLink :to="`/event/${event.id}`" class="news__card-link">
+        <NuxtLink :to="`/events/${event.id}`" class="news__card-link">
           <!--          <nuxt-img-->
           <!--            provider="strapi"-->
           <!--            :src="event.attributes.logo.data.attributes.url"-->
@@ -37,7 +37,7 @@ const props = defineProps({
     @apply flex flex-col p-4 gap-4 flex-wrap;
   }
   &__card {
-    @apply max-w-xl bg-gray rounded-md overflow-hidden shadow-2xl flex flex-col justify-between;
+    @apply max-w-xl rounded-md overflow-hidden shadow-2xl flex flex-col justify-between;
     transition: all linear 0.2s;
     &:hover {
       transform: scale(1.03, 1.03);
