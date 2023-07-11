@@ -1,4 +1,6 @@
 <script setup>
+import { setErrors } from "@formkit/vue";
+
 import {
   TransitionRoot,
   TransitionChild,
@@ -14,6 +16,8 @@ const user = useStrapiUser();
 const isOpen = ref(false);
 
 const pictureUrl = ref("");
+
+const complete = ref(false);
 function closeModal() {
   isOpen.value = false;
   // pictureUrl.value = "";
@@ -22,24 +26,61 @@ function openModal(url) {
   isOpen.value = true;
   pictureUrl.value = url;
 }
+
+const submitHandler = async (data) => {
+  // We need to submit this as a multipart/form-data
+  // to do this we use the FormData API.
+  const body = new FormData();
+  // We can append other data to our form data:
+  // body.append("name", data.name);
+  // Finally, we append the actual File object(s)
+  data.avatar.forEach((fileItem) => {
+    body.append("files", fileItem.file);
+  });
+
+  // We'll perform a real upload to httpbin.org
+  const res = await fetch("http://localhost:1337/api/upload", {
+    method: "POST",
+    body: body,
+  });
+
+  if (res.ok) {
+    complete.value = true;
+  } else {
+    console.log(res);
+    setErrors("avatarForm", ["чтото пошло не так."]);
+  }
+};
 </script>
 
 <template>
   <section>
     <div class="grid grid-cols-2 md:grid-cols-3 gap-4 pt-4">
-      <div class="bg-white rounded-xl p-4 flex flex-col gap-4">
+      <div class="bg-white rounded-xl p-4 flex gap-4">
         <nuxt-img
           class="w-40 h-40 rounded-full"
           :src="`http://localhost:1337${user.picture.url}`"
           alt="Rounded avatar"
         />
-
-        <div>{{ user.username }}</div>
-        <div><span>Имя: </span>{{ user.name }}</div>
-
-        <div><span>Email: </span>{{ user.email }}</div>
-        <div><span>Карма: </span>{{ user.karma }}</div>
-        <div><span>Город: </span>{{ user.city }}</div>
+        <div>
+          <div>{{ user.username }}</div>
+          <FormKit
+            v-if="!complete"
+            id="avatarForm"
+            type="form"
+            @submit="submitHandler"
+          >
+            <FormKit
+              type="file"
+              label="Сменить аватар"
+              name="avatar"
+              accept=".jpg,.png,.webp"
+              capture="true"
+              validation="required"
+            />
+          </FormKit>
+          <div v-else class="complete">Avatar upload complete 👍</div>
+        </div>
       </div>
       <div class="col-span-2 bg-white rounded-xl p-4">
         <h3 class="text-2xl py-2">информация</h3>
@@ -47,6 +88,11 @@ function openModal(url) {
       </div>
       <div class="bg-white rounded-xl p-4">
         <h3 class="text-2xl py-4">Увлечения</h3>
+        <div><span>Имя: </span>{{ user.name }}</div>
+
+        <div><span>Email: </span>{{ user.email }}</div>
+        <div><span>Карма: </span>{{ user.karma }}</div>
+        <div><span>Город: </span>{{ user.city }}</div>
         <ul class="flex gap-2">
           <li
             v-for="category in user.categories"

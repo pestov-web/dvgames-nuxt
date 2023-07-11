@@ -21,7 +21,7 @@
 
 <style>
 body {
-  @apply bg-gray-900;
+  @apply bg-gray-400;
 }
 .page-enter-active,
 .page-leave-active {

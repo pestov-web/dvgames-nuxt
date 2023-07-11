@@ -1,92 +1,153 @@
-<script lang="ts" setup></script>
+<script setup>
+import {
+  TabGroup,
+  TabList,
+  Tab,
+  TabPanels,
+  TabPanel,
+  TransitionRoot,
+  TransitionChild,
+  Dialog,
+  DialogPanel,
+  DialogTitle,
+} from "@headlessui/vue";
+import { ref } from "vue";
+
+const { find } = useStrapi();
+const {
+  data: gallery,
+  pending,
+  refresh,
+  error,
+} = await useAsyncData("gallery", () =>
+  find("galereyas", {
+    populate: ["pictures"],
+  }),
+);
+
+const isOpen = ref(false);
+const pictureUrl = ref("");
+function closeModal() {
+  isOpen.value = false;
+  // pictureUrl.value = "";
+}
+function openModal(url) {
+  isOpen.value = true;
+  pictureUrl.value = url;
+}
+</script>
 
 <template>
-  <ul class="grid grid-cols-2 md:grid-cols-3 gap-4 bg-white rounded-xl p-4">
-    <li>
-      <nuxt-img
-        class="h-auto max-w-full rounded-lg"
-        src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image.jpg"
-        alt=""
-      />
-    </li>
-    <div>
-      <nuxt-img
-        class="h-auto max-w-full rounded-lg"
-        src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-1.jpg"
-        alt=""
-      />
-    </div>
-    <div>
-      <nuxt-img
-        class="h-auto max-w-full rounded-lg"
-        src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-2.jpg"
-        alt=""
-      />
-    </div>
-    <div>
-      <nuxt-img
-        class="h-auto max-w-full rounded-lg"
-        src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-3.jpg"
-        alt=""
-      />
-    </div>
-    <div>
-      <nuxt-img
-        class="h-auto max-w-full rounded-lg"
-        src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-4.jpg"
-        alt=""
-      />
-    </div>
-    <div>
-      <img
-        class="h-auto max-w-full rounded-lg"
-        src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-5.jpg"
-        alt=""
-      />
-    </div>
-    <div>
-      <img
-        class="h-auto max-w-full rounded-lg"
-        src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-6.jpg"
-        alt=""
-      />
-    </div>
-    <div>
-      <img
-        class="h-auto max-w-full rounded-lg"
-        src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-7.jpg"
-        alt=""
-      />
-    </div>
-    <div>
-      <img
-        class="h-auto max-w-full rounded-lg"
-        src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-8.jpg"
-        alt=""
-      />
-    </div>
-    <div>
-      <img
-        class="h-auto max-w-full rounded-lg"
-        src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-9.jpg"
-        alt=""
-      />
-    </div>
-    <div>
-      <img
-        class="h-auto max-w-full rounded-lg"
-        src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-10.jpg"
-        alt=""
-      />
-    </div>
-    <div>
-      <img
-        class="h-auto max-w-full rounded-lg"
-        src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-11.jpg"
-        alt=""
-      />
-    </div>
-  </ul>
+  <div class="w-full px-2 py-4 sm:px-0">
+    <TabGroup>
+      <TabList class="flex space-x-1 rounded-xl bg-blue-900/20 p-1">
+        <Tab
+          v-for="item in gallery.data"
+          as="template"
+          :key="item.id"
+          v-slot="{ selected }"
+        >
+          <button
+            :class="[
+              'w-full rounded-lg py-2.5 text-sm font-medium leading-5 text-blue-700',
+              'ring-white ring-opacity-60 ring-offset-2 ring-offset-blue-400 focus:outline-none focus:ring-2',
+              selected
+                ? 'bg-white shadow'
+                : 'text-blue-100 hover:bg-white/[0.12] hover:text-white',
+            ]"
+          >
+            {{ item.attributes.title }}
+          </button>
+        </Tab>
+      </TabList>
+
+      <TabPanels class="mt-2">
+        <TabPanel
+          v-for="(pictures, idx) in Object.values(gallery.data)"
+          :key="idx"
+          :class="[
+            'rounded-xl bg-white p-3',
+            'ring-white ring-opacity-60 ring-offset-2 ring-offset-blue-400 focus:outline-none focus:ring-2',
+          ]"
+        >
+          <ul
+            class="grid grid-cols-2 md:grid-cols-3 gap-4 bg-white rounded-xl p-4"
+          >
+            <li
+              v-for="img in pictures.attributes.pictures.data"
+              :key="img.id"
+              class="relative rounded-md p-3 hover:bg-gray-100 max-h-[300px] max-w-[350px] cursor-pointer"
+              @click="openModal(img.attributes.url)"
+            >
+              <nuxt-img
+                class="rounded-lg max-h-[250px]"
+                :src="`http://localhost:1337${img.attributes.url}`"
+                alt=""
+                fit="cover"
+              />
+            </li>
+          </ul>
+        </TabPanel>
+      </TabPanels>
+    </TabGroup>
+    <TransitionRoot appear :show="isOpen" as="template">
+      <Dialog as="div" @close="closeModal" class="relative z-10">
+        <TransitionChild
+          as="template"
+          enter="duration-300 ease-out"
+          enter-from="opacity-0"
+          enter-to="opacity-100"
+          leave="duration-200 ease-in"
+          leave-from="opacity-100"
+          leave-to="opacity-0"
+        >
+          <div class="fixed inset-0 bg-black bg-opacity-25" />
+        </TransitionChild>
+
+        <div class="fixed inset-0 overflow-y-auto">
+          <div
+            class="flex min-h-full items-center justify-center p-4 text-center"
+          >
+            <TransitionChild
+              as="template"
+              enter="duration-300 ease-out"
+              enter-from="opacity-0 scale-95"
+              enter-to="opacity-100 scale-100"
+              leave="duration-200 ease-in"
+              leave-from="opacity-100 scale-100"
+              leave-to="opacity-0 scale-95"
+            >
+              <DialogPanel
+                class="w-full max-w-3xl transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all"
+              >
+                <DialogTitle
+                  as="h3"
+                  class="text-lg font-medium leading-6 text-gray-900"
+                >
+                </DialogTitle>
+
+                <nuxt-img
+                  class="rounded-lg"
+                  :src="`http://localhost:1337${pictureUrl}`"
+                  alt=""
+                  fit="cover"
+                />
+                <div class="mt-4">
+                  <button
+                    type="button"
+                    class="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+                    @click="closeModal"
+                  >
+                    Закрыть
+                  </button>
+                </div>
+              </DialogPanel>
+            </TransitionChild>
+          </div>
+        </div>
+      </Dialog>
+    </TransitionRoot>
+  </div>
 </template>
 
 <style scoped></style>

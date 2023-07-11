@@ -25,6 +25,7 @@ export default defineNuxtConfig({
     "@nuxt/image",
     "@nuxtjs/tailwindcss",
     "@nuxtjs/strapi",
+    "@formkit/nuxt",
   ],
   swiper: {
     // Swiper options
@@ -44,14 +45,7 @@ export default defineNuxtConfig({
     cookie: {},
     cookieName: "strapi_jwt",
     auth: {
-      populate: [
-        "avatar",
-        "categories",
-        "achievements",
-        "friends",
-        "tel",
-        "fullname",
-      ],
+      populate: ["picture", "categories", "achivs", "gallery"],
     },
   },
   image: {

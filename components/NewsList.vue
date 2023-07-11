@@ -1,19 +1,40 @@
 <script setup>
+const { find } = useStrapi();
+const route = useRoute();
+
 const props = defineProps({
   news: {
     type: Object,
   },
 });
+
+const { data: categories } = await useAsyncData("categories", () =>
+  find("categories"),
+);
 </script>
 
 <template>
   <div class="pb-[100px] col-span-2 bg-white rounded-2xl">
+    <nav class="px-2 pt-4">
+      <ul class="flex gap-4 divide-x">
+        <li class="pl-4">
+          <nuxt-link to="/">Все</nuxt-link>
+        </li>
+        <li v-for="category in categories.data" class="pl-4">
+          <nuxt-link
+            :to="`/${category.attributes.slug}`"
+            :class="{ active: route.params.slug === category.attributes.slug }"
+            >{{ category.attributes.name }}</nuxt-link
+          >
+        </li>
+      </ul>
+    </nav>
     <ul class="news__list divide-y overflow-hidden">
       <li v-for="(article, index) in news" class="news__card">
         <div class="dark:bg-gray-800 dark:text-gray-50">
           <div class="container grid grid-cols-12 mx-auto dark:bg-gray-900">
-            <div class="flex flex-col p-6 col-span-full row-span-full">
-              <div class="flex justify-start pt-4">
+            <div class="flex flex-col px-6 pb-6 col-span-full row-span-full">
+              <div class="flex justify-start py-4">
                 <span
                   v-if="article.attributes.subcat.data"
                   class="px-2 py-1 text-xs rounded-full bg-violet-300 dark:bg-violet-400 dark:text-gray-900"
@@ -39,6 +60,7 @@ const props = defineProps({
                 v-if="index < 3"
               >
                 <nuxt-img
+                  v-if="article.attributes.image"
                   :src="`http://localhost:1337${article.attributes.image.data.attributes.url}`"
                   width="100%"
                   class="w-full"
@@ -91,5 +113,8 @@ const props = defineProps({
       transform: scale(1.01, 1.01);
     }
   }
+}
+.active {
+  color: blueviolet;
 }
 </style>

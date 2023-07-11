@@ -10,7 +10,7 @@ const {
 
 <template>
   <section
-    class="rounded-xl bg-white p-4 flex flex-col gap-4"
+    class="rounded-xl bg-white p-4 flex flex-col gap-4 mt-4"
     v-html="about.data.attributes.content"
   ></section>
 </template>

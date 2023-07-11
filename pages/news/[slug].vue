@@ -9,7 +9,7 @@ const { data: article } = await useFetch(
 <script></script>
 
 <template>
-  <section class="bg-white rounded-xl p-6">
+  <section class="bg-white rounded-xl p-6 mt-4">
     <div class="flex pb-3">
       <button
         @click="router.back()"
@@ -26,11 +26,17 @@ const { data: article } = await useFetch(
     <h1 class="text-2xl">{{ article.data[0].attributes.title }}</h1>
     <div
       class="flex flex-col justify-center items-center gap-4 mt-4"
+      v-if="article.data[0].attributes.local"
       v-html="
         article.data[0].attributes.content
           .split('/uploads/')
           .join(`http://127.0.0.1:1337/uploads/`)
       "
+    ></div>
+    <div
+      v-else
+      class="flex flex-col justify-center items-center gap-4 mt-4"
+      v-html="article.data[0].attributes.content"
     ></div>
   </section>
 </template>
