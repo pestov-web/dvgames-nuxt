@@ -33,10 +33,17 @@ const {
     }"
   >
     <SwiperSlide v-for="slide in slides.data" class="w-full">
-      <nuxt-img
-        fit="cover"
-        :src="`http://localhost:1337${slide.attributes.image.data.attributes.url}`"
-      />
+      <div class="relative">
+        <nuxt-img
+          fit="cover"
+          :src="`http://localhost:1337${slide.attributes.image.data.attributes.url}`"
+        />
+        <p
+          class="z-10 text-white text-2xl absolute top-[230px] left-6 bg-gray-600 p-2 rounded-xl"
+        >
+          {{ slide.attributes.title }}
+        </p>
+      </div>
     </SwiperSlide>
   </Swiper>
 </template>

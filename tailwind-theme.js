@@ -37,7 +37,7 @@ export default {
   },
   "family:button": {
     input:
-      "$reset w-full text-black bg-blue-300 hover:bg-blue-600 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800",
+      "$reset w-full text-black bg-blue-300 hover:bg-blue-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800",
     wrapper: "mb-1",
     prefixIcon: "$reset block w-4 -ml-2 mr-2 stretch",
     suffixIcon: "$reset block w-4 ml-2 stretch",

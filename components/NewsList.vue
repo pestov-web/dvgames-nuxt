@@ -1,6 +1,8 @@
 <script setup>
 const { find } = useStrapi();
 const route = useRoute();
+const dayjs = useDayjs();
+dayjs.locale("ru");
 
 const props = defineProps({
   news: {
@@ -93,7 +95,7 @@ const { data: categories } = await useAsyncData("categories", () =>
                   </span>
                 </div>
                 <span class="text-xs">
-                  {{ article.attributes.publishedAt }}
+                  {{ dayjs(article.attributes.publishedAt) }}
                 </span>
               </div>
             </div>

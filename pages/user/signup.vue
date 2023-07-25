@@ -81,7 +81,11 @@ const submitHandler = async (credentials) => {
               />
             </div>
 
-            <FormKit type="submit" label="Зарегистрироваться" />
+            <FormKit
+              type="submit"
+              label="Зарегистрироваться"
+              input-class="bg-blue-600"
+            />
             <p class="text-sm font-light text-gray-500 dark:text-gray-400">
               Уже зарегистрированы?
               <nuxt-link

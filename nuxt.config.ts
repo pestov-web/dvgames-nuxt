@@ -26,6 +26,7 @@ export default defineNuxtConfig({
     "@nuxtjs/tailwindcss",
     "@nuxtjs/strapi",
     "@formkit/nuxt",
+    "dayjs-nuxt",
   ],
   swiper: {
     // Swiper options
@@ -52,5 +53,11 @@ export default defineNuxtConfig({
     strapi: {
       baseURL: "http://localhost:1337",
     },
+  },
+  dayjs: {
+    locales: ["ru", "ru"],
+    plugins: ["relativeTime", "utc", "timezone"],
+    defaultLocale: "ru",
+    defaultTimezone: "Asia/Vladivostok",
   },
 });
