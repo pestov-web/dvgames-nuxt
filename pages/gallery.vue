@@ -81,7 +81,7 @@ function openModal(url) {
             >
               <nuxt-img
                 class="rounded-lg max-h-[250px]"
-                :src="`http://localhost:1337${img.attributes.url}`"
+                :src="`http://devapi.pestov-web.ru${img.attributes.url}`"
                 alt=""
                 fit="cover"
               />
@@ -128,7 +128,7 @@ function openModal(url) {
 
                 <nuxt-img
                   class="rounded-lg"
-                  :src="`http://localhost:1337${pictureUrl}`"
+                  :src="`http://devapi.pestov-web.ru${pictureUrl}`"
                   alt=""
                   fit="cover"
                 />
