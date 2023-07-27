@@ -3,7 +3,7 @@ const route = useRoute();
 const router = useRouter();
 
 const { data: article } = await useFetch(
-  `http://localhost:1337/api/articles?filters[slug][$eq]=${route.params.slug}&populate=*`,
+  `http://devapi.pestov-web.ru/api/articles?filters[slug][$eq]=${route.params.slug}&populate=*`,
 );
 </script>
 <script></script>

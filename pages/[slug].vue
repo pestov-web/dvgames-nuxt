@@ -2,11 +2,11 @@
 const route = useRoute();
 
 const { data: news } = await useFetch(
-  `http://localhost:1337/api/articles?filters[category][slug][$eq]=${route.params.slug}&populate=*`,
+  `http://devapi.pestov-web.ru/api/articles?filters[category][slug][$eq]=${route.params.slug}&populate=*`,
 );
 
 const { data: events } = await useFetch(
-  `http://localhost:1337/api/events?filters[category][slug][$eq]=${route.params.slug}&populate=*`,
+  `http://devapi.pestov-web.ru/api/events?filters[category][slug][$eq]=${route.params.slug}&populate=*`,
 );
 </script>
 
