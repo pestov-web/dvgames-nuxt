@@ -21,7 +21,7 @@ const {
       <nuxt-link to="/shop"
         ><nuxt-img
           fit="cover"
-          :src="`http://localhost:1337${banner.data.attributes.banner.data.attributes.url}`"
+          :src="`http://devapi.pestov-web.ru${banner.data.attributes.banner.data.attributes.url}`"
       /></nuxt-link>
     </div>
     <div

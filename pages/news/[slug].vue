@@ -19,7 +19,7 @@ const { data: article } = await useFetch(
       </button>
     </div>
     <nuxt-img
-      :src="`http://localhost:1337${article.data[0].attributes.image.data.attributes.url}`"
+      :src="`http://devapi.pestov-web.ru${article.data[0].attributes.image.data.attributes.url}`"
       width="100%"
       class="w-full"
     />
@@ -30,7 +30,7 @@ const { data: article } = await useFetch(
       v-html="
         article.data[0].attributes.content
           .split('/uploads/')
-          .join(`http://127.0.0.1:1337/uploads/`)
+          .join(`http://devapi.pestov-web.ru/uploads/`)
       "
     ></div>
     <div

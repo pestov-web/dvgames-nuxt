@@ -25,7 +25,7 @@ const { data: goods } = await useFetch(
             class="p-8 rounded-t-lg max-h-[300px] max-w-[300px]"
             width="300"
             height="300"
-            :src="`http://localhost:1337${good.attributes.pictures.data[0].attributes.url}`"
+            :src="`http://devapi.pestov-web.ru${good.attributes.pictures.data[0].attributes.url}`"
             alt="product image"
           />
         </nuxt-link>

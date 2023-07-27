@@ -30,7 +30,7 @@ const { data: event } = await useFetch(
       v-html="
         event.data[0].attributes.content
           .split('/uploads/')
-          .join(`http://127.0.0.1:1337/uploads/`)
+          .join(`http://devapi.pestov-web.ru/uploads/`)
       "
     ></div>
     <div

@@ -15,7 +15,7 @@ const { data: good } = await useFetch(
     <h2>{{ good.data[0].attributes.title }}</h2>
     <nuxt-img
       class="rounded-lg max-h-[250px]"
-      :src="`http://localhost:1337${good.data[0].attributes.pictures.data[0].attributes.url}`"
+      :src="`http://devapi.pestov-web.ru${good.data[0].attributes.pictures.data[0].attributes.url}`"
       alt=""
       fit="cover"
     />
@@ -29,7 +29,7 @@ const { data: good } = await useFetch(
       >
         <nuxt-img
           class="rounded-lg max-h-[250px] max-w-[250px]"
-          :src="`http://localhost:1337${picture.attributes.url}`"
+          :src="`http://devapi.pestov-web.ru${picture.attributes.url}`"
           alt=""
           fit="cover"
         />

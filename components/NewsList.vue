@@ -63,7 +63,7 @@ const { data: categories } = await useAsyncData("categories", () =>
               >
                 <nuxt-img
                   v-if="article.attributes.image"
-                  :src="`http://localhost:1337${article.attributes.image.data.attributes.url}`"
+                  :src="`http://devapi.pestov-web.ru${article.attributes.image.data.attributes.url}`"
                   width="100%"
                   class="w-full"
                 />

@@ -36,8 +36,8 @@ const onClick = () => {
                   class="w-10 h-10 rounded-full"
                   :src="
                     user.picture
-                      ? `http://localhost:1337${user.picture.url}`
-                      : 'http://localhost:1337/uploads/dvgames_7670e7bf02.jpg'
+                      ? `http://devapi.pestov-web.ru${user.picture.url}`
+                      : 'http://devapi.pestov-web.ru/uploads/dvgames_7670e7bf02.jpg'
                   "
                   alt="Rounded avatar"
                 />
