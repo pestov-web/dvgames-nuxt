@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 const { find } = useStrapi();
+const config = useRuntimeConfig();
 const {
   data: users,
   pending,
@@ -22,8 +23,8 @@ const {
               class="w-10 h-10 rounded-full m-0"
               :src="
                 user.picture
-                  ? `http://localhost:1337${user.picture.url}`
-                  : 'http://localhost:1337/uploads/dvgames_7670e7bf02.jpg'
+                  ? config.strapiUrl + user.picture.url
+                  : config.strapiUrl + '/uploads/dvgames_7670e7bf02.jpg'
               "
               alt="Rounded avatar"
             />

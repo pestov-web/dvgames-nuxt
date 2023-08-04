@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 const { find } = useStrapi();
+const config = useRuntimeConfig();
 const {
   data: banner,
   pending,
@@ -21,7 +22,9 @@ const {
       <nuxt-link to="/shop"
         ><nuxt-img
           fit="cover"
-          :src="`http://devapi.pestov-web.ru${banner.data.attributes.banner.data.attributes.url}`"
+          :src="
+            config.strapiUrl + banner.data.attributes.banner.data.attributes.url
+          "
       /></nuxt-link>
     </div>
     <div

@@ -1,9 +1,11 @@
 <script setup>
 const route = useRoute();
 const router = useRouter();
+const config = useRuntimeConfig();
 
 const { data: article } = await useFetch(
-  `http://devapi.pestov-web.ru/api/articles?filters[slug][$eq]=${route.params.slug}&populate=*`,
+  config.strapiUrl +
+    `/api/articles?filters[slug][$eq]=${route.params.slug}&populate=*`,
 );
 </script>
 <script></script>

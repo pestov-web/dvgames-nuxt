@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 const { find } = useStrapi();
+const config = useRuntimeConfig();
 const {
   data: about,
   pending,

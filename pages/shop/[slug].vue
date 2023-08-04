@@ -4,11 +4,13 @@ definePageMeta({
 });
 const route = useRoute();
 const router = useRouter();
+const config = useRuntimeConfig();
 definePageMeta({
   layout: "shop",
 });
 const { data: goods } = await useFetch(
-  `http://localhost:1337/api/tovaries?filters[tovarnye_kategorii][slug][$eq]=${route.params.slug}&populate=*`,
+  config.strapiUrl +
+    `/api/tovaries?filters[tovarnye_kategorii][slug][$eq]=${route.params.slug}&populate=*`,
 );
 </script>
 
@@ -25,7 +27,9 @@ const { data: goods } = await useFetch(
             class="p-8 rounded-t-lg max-h-[300px] max-w-[300px]"
             width="300"
             height="300"
-            :src="`http://devapi.pestov-web.ru${good.attributes.pictures.data[0].attributes.url}`"
+            :src="
+              config.strapiUrl + good.attributes.pictures.data[0].attributes.url
+            "
             alt="product image"
           />
         </nuxt-link>

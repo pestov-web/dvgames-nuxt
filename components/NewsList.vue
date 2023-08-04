@@ -1,5 +1,6 @@
 <script setup>
 const { find } = useStrapi();
+const config = useRuntimeConfig();
 const route = useRoute();
 const dayjs = useDayjs();
 dayjs.locale("ru");
@@ -63,7 +64,10 @@ const { data: categories } = await useAsyncData("categories", () =>
               >
                 <nuxt-img
                   v-if="article.attributes.image"
-                  :src="`http://devapi.pestov-web.ru${article.attributes.image.data.attributes.url}`"
+                  :src="
+                    config.strapiUrl +
+                    article.attributes.image.data.attributes.url
+                  "
                   width="100%"
                   class="w-full"
                 />

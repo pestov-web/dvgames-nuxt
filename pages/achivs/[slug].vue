@@ -1,9 +1,11 @@
 <script lang="ts" setup>
 const route = useRoute();
 const router = useRouter();
+const config = useRuntimeConfig();
 
 const { data: achiv } = await useFetch(
-  `http://devapi.pestov-web.ru/api/achives?filters[slug][$eq]=${route.params.slug}&populate=*`,
+  config.strapiUrl +
+    `/api/achives?filters[slug][$eq]=${route.params.slug}&populate=*`,
 );
 </script>
 

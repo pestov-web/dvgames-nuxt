@@ -1,12 +1,15 @@
 <script lang="ts" setup>
 const route = useRoute();
+const config = useRuntimeConfig();
 
 const { data: news } = await useFetch(
-  `http://devapi.pestov-web.ru/api/articles?filters[category][slug][$eq]=${route.params.slug}&populate=*`,
+  config.strapiUrl +
+    `/api/articles?filters[category][slug][$eq]=${route.params.slug}&populate=*`,
 );
 
 const { data: events } = await useFetch(
-  `http://devapi.pestov-web.ru/api/events?filters[category][slug][$eq]=${route.params.slug}&populate=*`,
+  config.strapiUrl +
+    `/api/events?filters[category][slug][$eq]=${route.params.slug}&populate=*`,
 );
 </script>
 

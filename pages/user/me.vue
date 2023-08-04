@@ -1,4 +1,5 @@
 <script setup>
+const config = useRuntimeConfig();
 import {
   TransitionRoot,
   TransitionChild,
@@ -30,7 +31,7 @@ function openModal(url) {
       <div class="bg-white rounded-xl p-4 flex flex-col gap-4">
         <nuxt-img
           class="w-40 h-40 rounded-full"
-          :src="`http://devapi.pestov-web.ru${user.picture.url}`"
+          :src="config.strapiUrl + user.picture.url"
           alt="Rounded avatar"
         />
 
@@ -82,7 +83,7 @@ function openModal(url) {
         >
           <nuxt-img
             class="rounded-lg max-h-[250px]"
-            :src="`http://devapi.pestov-web.ru${picture.url}`"
+            :src="config.strapiUrl + picture.url"
             alt=""
             fit="cover"
           />
@@ -128,7 +129,7 @@ function openModal(url) {
 
                 <nuxt-img
                   class="rounded-lg"
-                  :src="`http://devapi.pestov-web.ru${pictureUrl}`"
+                  :src="config.strapiUrl + pictureUrl"
                   alt=""
                   fit="cover"
                 />

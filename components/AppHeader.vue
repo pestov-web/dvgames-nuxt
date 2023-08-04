@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 const user = useStrapiUser();
+const config = useRuntimeConfig();
 const { logout } = useStrapiAuth();
 const router = useRouter();
 import { Menu, MenuButton, MenuItems, MenuItem } from "@headlessui/vue";
@@ -36,8 +37,9 @@ const onClick = () => {
                   class="w-10 h-10 rounded-full"
                   :src="
                     user.picture
-                      ? `http://devapi.pestov-web.ru${user.picture.url}`
-                      : 'http://devapi.pestov-web.ru/uploads/dvgames_7670e7bf02.jpg'
+                      ? config.strapiUrl + user.picture.url
+                      : config.strapiUrl +
+                        'http://devapi.pestov-web.ru/uploads/dvgames_7670e7bf02.jpg'
                   "
                   alt="Rounded avatar"
                 />

@@ -1,4 +1,5 @@
 <script setup>
+const config = useRuntimeConfig();
 import {
   TabGroup,
   TabList,
@@ -81,7 +82,7 @@ function openModal(url) {
             >
               <nuxt-img
                 class="rounded-lg max-h-[250px]"
-                :src="`http://devapi.pestov-web.ru${img.attributes.url}`"
+                :src="config.strapiUrl + img.attributes.url"
                 alt=""
                 fit="cover"
               />
@@ -128,7 +129,7 @@ function openModal(url) {
 
                 <nuxt-img
                   class="rounded-lg"
-                  :src="`http://devapi.pestov-web.ru${pictureUrl}`"
+                  :src="config.strapiUrl + pictureUrl"
                   alt=""
                   fit="cover"
                 />

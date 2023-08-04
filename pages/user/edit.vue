@@ -1,5 +1,6 @@
 <script setup>
 import { setErrors } from "@formkit/vue";
+const config = useRuntimeConfig();
 
 import {
   TransitionRoot,
@@ -39,7 +40,7 @@ const submitHandler = async (data) => {
   });
 
   // We'll perform a real upload to httpbin.org
-  const res = await fetch("http://localhost:1337/api/upload", {
+  const res = await fetch(config.strapiUrl + "/api/upload", {
     method: "POST",
     body: body,
   });
@@ -59,7 +60,7 @@ const submitHandler = async (data) => {
       <div class="bg-white rounded-xl p-4 flex gap-4">
         <nuxt-img
           class="w-40 h-40 rounded-full"
-          :src="`http://localhost:1337${user.picture.url}`"
+          :src="config.strapiUrl + user.picture.url"
           alt="Rounded avatar"
         />
         <div>
@@ -128,7 +129,7 @@ const submitHandler = async (data) => {
         >
           <nuxt-img
             class="rounded-lg max-h-[250px]"
-            :src="`http://localhost:1337${picture.url}`"
+            :src="config.strapiUrl + picture.url"
             alt=""
             fit="cover"
           />
@@ -174,7 +175,7 @@ const submitHandler = async (data) => {
 
                 <nuxt-img
                   class="rounded-lg"
-                  :src="`http://localhost:1337${pictureUrl}`"
+                  :src="config.strapiUrl + pictureUrl"
                   alt=""
                   fit="cover"
                 />

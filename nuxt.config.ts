@@ -7,16 +7,17 @@ export default defineNuxtConfig({
   },
   // uncomment before deploy
   runtimeConfig: {
-    strapi: {
-      // nuxt/strapi options available server-side
-      url: "http://localhost:1337",
-    },
-    public: {
-      strapi: {
-        // nuxt/strapi options available client-side
-        url: "http://devapi.pestov-web.ru",
-      },
-    },
+    strapiUrl: "http://localhost:1337",
+    // strapi: {
+    //   // nuxt/strapi options available server-side
+    //   url: "http://localhost:1337",
+    // },
+    // public: {
+    //   strapi: {
+    //     // nuxt/strapi options available client-side
+    //     url: "http://devapi.pestov-web.ru",
+    //   },
+    // },
   },
   devtools: { enabled: true },
   modules: [
@@ -40,7 +41,7 @@ export default defineNuxtConfig({
   },
   strapi: {
     // comment before deploy
-    // url: process.env.API_URL || "http://localhost:1337",
+    url: process.env.API_URL || "http://localhost:1337",
     prefix: "/api",
     version: "v4",
     cookie: {},
